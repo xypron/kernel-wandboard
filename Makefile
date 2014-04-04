@@ -18,7 +18,9 @@ all:
 	cp linux/.config linux/deploy/config-$(VERSION)
 	cp linux/arch/arm/boot/zImage linux/deploy/$(VERSION).zImage
 	cd linux && make modules_install INSTALL_MOD_PATH=deploy
+	cd linux && make headers_install INSTALL_HDR_PATH=deploy
 	find linux/arch/arm/boot/dts/ -name *.dtb -exec cp {} linux/deploy/dtbs \;
 	cd linux/deploy && tar -czf $(VERSION)-dtbs.tar.gz dtbs
 	cd linux/deploy && tar -czf $(VERSION)-modules-firmware.tar.gz lib
+	cd linux/deploy && tar -czf $(VERSION)-headers.tar.gz usr
 	cp config/config-$(TAG) linux/deploy/config-$(VERSION)
