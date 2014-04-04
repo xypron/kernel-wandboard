@@ -1,9 +1,5 @@
 TAG=3.14
 
-clean:
-	test -d linux && cd linux && rm -f .config
-	test -d linux && cd linux git clean -df
-
 all:
 	test -d linux || git clone \
 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
@@ -34,3 +30,8 @@ all:
 	cd linux/deploy && tar -czf $(VERSION)-headers.tar.gz usr
 	VERSION=$(cd linux && make kernelversion) && \
 	cp linux/.config linux/deploy/config-$(VERSION)
+
+clean:
+	test -d linux && cd linux && rm -f .config
+	test -d linux && cd linux git clean -df
+
