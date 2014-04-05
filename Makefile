@@ -1,7 +1,7 @@
 TAG=3.14
 
 all:
-	test -d linux || git clone \
+	test -d linux || git clone -v \
 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 	cp config/config-$(TAG) linux/.config
 	cd linux && git checkout master
@@ -15,21 +15,19 @@ all:
 	cd linux && make -j6 zImage modules dtbs
 	rm linux/deploy -rf
 	mkdir -p linux/deploy/dtbs
-	VERSION=$(cd linux && make kernelversion) && \
-	cp linux/.config linux/deploy/config-$(VERSION)
-	VERSION=$(cd linux && make kernelversion) && \
-	cp linux/arch/arm/boot/zImage linux/deploy/$(VERSION).zImage
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/.config linux/deploy/config-$$VERSION
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/arch/arm/boot/zImage linux/deploy/$$VERSION.zImage
 	cd linux && make modules_install INSTALL_MOD_PATH=deploy
 	cd linux && make headers_install INSTALL_HDR_PATH=deploy/usr
 	find linux/arch/arm/boot/dts/ -name *.dtb -exec cp {} linux/deploy/dtbs \;
-	VERSION=$(cd linux && make kernelversion) && \
-	cd linux/deploy && tar -czf $(VERSION)-dtbs.tar.gz dtbs
-	VERSION=$(cd linux && make kernelversion) && \
-	cd linux/deploy && tar -czf $(VERSION)-modules-firmware.tar.gz lib
-	VERSION=$(cd linux && make kernelversion) && \
-	cd linux/deploy && tar -czf $(VERSION)-headers.tar.gz usr
-	VERSION=$(cd linux && make kernelversion) && \
-	cp linux/.config linux/deploy/config-$(VERSION)
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cd linux/deploy && tar -czf $$VERSION-dtbs.tar.gz dtbs
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cd linux/deploy && tar -czf $$VERSION-modules-firmware.tar.gz lib
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cd linux/deploy && tar -czf $$VERSION-headers.tar.gz usr
 
 clean:
 	test -d linux && cd linux && rm -f .config
