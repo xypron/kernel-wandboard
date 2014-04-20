@@ -1,8 +1,9 @@
-TAG=3.14
+TAG=3.15-rc1
 
 all:
 	test -d linux || git clone -v \
-	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+	https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git \
+	linux
 	cp config/config-$(TAG) linux/.config
 	cd linux && git checkout master
 	cd linux && git fetch
