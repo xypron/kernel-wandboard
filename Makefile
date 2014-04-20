@@ -44,6 +44,6 @@ install:
 	cp linux/deploy/$$VERSION-headers.tar.gz $(DESTDIR)/boot;true
 
 clean:
-	test -d linux && cd linux && rm -f .config
-	test -d linux && cd linux git clean -df
+	test -d linux && cd linux && rm -f .config || true
+	test -d linux && cd linux git clean -df || true
 

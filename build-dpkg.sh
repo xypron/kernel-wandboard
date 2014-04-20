@@ -1,4 +1,4 @@
 #!/bin/sh
-#
-# Build Debian package.
-dpkg-buildpackage
+at now -f make-dpkg.job
+atq
+multitail make.log
