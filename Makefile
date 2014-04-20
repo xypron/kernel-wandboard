@@ -1,8 +1,8 @@
-TAG=3.15-rc1
+TAG=3.14.1
 
 all:
 	test -d linux || git clone -v \
-	https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git \
+	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git \
 	linux
 	cp config/config-$(TAG) linux/.config
 	cd linux && git checkout master
