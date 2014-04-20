@@ -1,0 +1,15 @@
+Source: wandboard-kernel
+Section: kernel
+Priority: optional
+Maintainer: Heinrich Schuchardt <xypron.glpk@gmx.de>
+Standards-Version: 3.9.4
+Build-Depends: debhelper, cpio, kmod, python, python-six, bc, gcc
+Homepage: https://www.kernel.org/
+
+Package: wandboard-kernel
+Architecture: armhf
+Section: debian-installer
+Priority: standard
+Provides: kernel-image
+Description: Kernel image for wandboard
+ This package contains the linux kernel image for the wandboard.

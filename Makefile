@@ -30,6 +30,19 @@ all:
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
 	cd linux/deploy && tar -czf $$VERSION-headers.tar.gz usr
 
+install:
+	mkdir -p -m 755 $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/deploy/$$VERSION.zImage $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/deploy/config-$$VERSION $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/deploy/$$VERSION-dtbs.tar.gz $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/deploy/$$VERSION-modules-firmware.tar.gz $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	cp linux/deploy/$$VERSION-headers.tar.gz $(DESTDIR)/boot;true
+
 clean:
 	test -d linux && cd linux && rm -f .config
 	test -d linux && cd linux git clean -df
