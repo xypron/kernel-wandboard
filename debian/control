@@ -2,8 +2,8 @@ Source: wandboard-kernel-stable
 Section: kernel
 Priority: optional
 Maintainer: Heinrich Schuchardt <xypron.glpk@gmx.de>
-Standards-Version: 3.9.4
 Build-Depends: debhelper, cpio, kmod, python, python-six, bc, gcc
+Standards-Version: 3.9.4.0
 Homepage: https://www.kernel.org/
 
 Package: wandboard-kernel-image-stable

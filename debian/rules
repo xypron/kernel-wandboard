@@ -9,8 +9,3 @@ export DH_OPTIONS
 %:
 	dh $@
 
-override_dpkg-source:
-
-override_dh_auto_install:
-	dh_auto_install --destdir=debian/kernel
-
