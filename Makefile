@@ -1,6 +1,8 @@
 TAG=3.14.1
 
-all:
+all: build copy
+
+build:
 	test -d linux || git clone -v \
 	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git \
 	linux
@@ -14,6 +16,8 @@ all:
 	cd linux && make clean
 	cd linux && make oldconfig
 	cd linux && make -j6 zImage modules dtbs
+
+copy:
 	rm linux/deploy -rf
 	mkdir -p linux/deploy/dtbs
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
@@ -25,6 +29,11 @@ all:
 	find linux/arch/arm/boot/dts/ -name *.dtb -exec cp {} linux/deploy/dtbs \;
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
 	cd linux/deploy && tar -czf $$VERSION-dtbs.tar.gz dtbs
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	mkdir -p -m 755 linux/deploy/lib/firmware/$$VERSION; true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	mv linux/deploy/lib/firmware/* \
+	linux/deploy/lib/firmware/$$VERSION; true
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
 	cd linux/deploy && tar -czf $$VERSION-modules-firmware.tar.gz lib
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \

@@ -1,5 +1,5 @@
-wandboard-kernel-stable (3.14.1.1) unstable; urgency=medium
+wandboard-kernel-stable (3.14.1.2) unstable; urgency=medium
 
   * Initial release
 
- -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Sun, 20 Apr 2014 17:23:31 +0000
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Mon, 21 Apr 2014 07:23:31 +0200
