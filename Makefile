@@ -51,6 +51,8 @@ install:
 	cp linux/deploy/$$VERSION-modules-firmware.tar.gz $(DESTDIR)/boot;true
 	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
 	cp linux/deploy/$$VERSION-headers.tar.gz $(DESTDIR)/boot;true
+	VERSION=$$(cd linux && make --no-print-directory kernelversion) && \
+	tar -xzf linux/deploy/$$VERSION-modules-firmware.tar.gz -C $(DESTDIR)/
 
 clean:
 	test -d linux && cd linux && rm -f .config || true
