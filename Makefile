@@ -1,4 +1,4 @@
-TAG=3.14.2
+TAG=3.14.3
 
 all: build copy
 
@@ -10,6 +10,7 @@ build:
 	cd linux && git checkout master
 	cd linux && git fetch
 	cd linux && git rebase
+	gpg --list-keys 00411886 || \
 	gpg --keyserver keys.gnupg.net --recv-key 00411886
 	cd linux && git verify-tag v$(TAG)
 	cd linux && git checkout v$(TAG)
