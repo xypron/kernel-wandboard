@@ -59,12 +59,11 @@ case "$1" in
     copy_kernel
     ;;
 
-    abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure|upgrade)
     ;;
 
     *)
         echo "postinst called with unknown argument \`$1'" >&2
-        exit 1
     ;;
 esac
 
