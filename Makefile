@@ -1,8 +1,8 @@
-TAG=3.15-rc7
+TAG=3.16.1
 
-all: build copy
+all: prepare build copy
 
-build:
+prepare:
 	test -d linux || git clone -v \
 	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git \
 	linux
@@ -12,6 +12,8 @@ build:
 	cd linux && git rebase
 	gpg --list-keys 00411886 || \
 	gpg --keyserver keys.gnupg.net --recv-key 00411886
+
+build:
 	cd linux && git verify-tag v$(TAG)
 	cd linux && git checkout v$(TAG)
 	cd linux && make clean

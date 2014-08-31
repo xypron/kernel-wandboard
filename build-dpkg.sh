@@ -1,3 +1,4 @@
 #!/bin/sh
-Make clean
+make prepare
+make clean
 dpkg-buildpackage
