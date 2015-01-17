@@ -1,3 +1,15 @@
+wandboard-kernel-stable (3.18.2.1) unstable; urgency=medium
+
+  * Kernel 3.18.3
+
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Sat, 17 Jan 2015 08:54:50 +0100
+
+wandboard-kernel-stable (3.18.2.0) unstable; urgency=medium
+
+  * Kernel 3.18.2
+
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Sun, 11 Jan 2015 04:35:04 +0100
+
 wandboard-kernel-stable (3.17.2.0) unstable; urgency=medium
 
   * Kernel 3.17.2
