@@ -4,3 +4,4 @@ tar-ignore = "linux*"
 tar-ignore = ".git*"
 # ignore log file
 tar-ignore = "job.log"
+tar-ignore = "make.log"
