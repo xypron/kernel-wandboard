@@ -6,17 +6,16 @@ prepare:
 	test -d linux || git clone -v \
 	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git \
 	linux
-	cp config/config-$(TAG) linux/.config
-	cd linux && git checkout master
 	cd linux && git fetch
-	cd linux && git rebase
 	gpg --list-keys 00411886 || \
 	gpg --keyserver keys.gnupg.net --recv-key 00411886
 
 build:
 	cd linux && git verify-tag v$(TAG)
 	cd linux && git checkout v$(TAG)
-	cd linux && make clean
+	cd linux && ( git branch -D build || true )
+	cd linux && git checkout -b build
+	cp config/config-$(TAG) linux/.config
 	cd linux && make oldconfig
 	cd linux && make -j6 zImage modules dtbs
 
