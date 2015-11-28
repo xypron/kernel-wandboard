@@ -1,4 +1,4 @@
-TAG=3.19.1
+TAG=4.3
 
 all: prepare build copy
 
@@ -15,6 +15,9 @@ build:
 	cd linux && git checkout v$(TAG)
 	cd linux && ( git branch -D build || true )
 	cd linux && git checkout -b build
+	if test -x patch/patch-$(TAG); \
+	then cd linux && ../patch/patch-$(TAG); \
+	else true; fi
 	cp config/config-$(TAG) linux/.config
 	cd linux && make oldconfig
 	cd linux && make -j6 zImage modules dtbs
